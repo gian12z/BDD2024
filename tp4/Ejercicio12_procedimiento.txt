@@ -1,0 +1,48 @@
+DELIMITER //
+
+CREATE PROCEDURE ProcesarDevoluciones()
+BEGIN
+    -- Declarar variables para el cursor
+    DECLARE v_ProductoId INT;
+    DECLARE v_CantidadDevuelta INT;
+    DECLARE v_FechaDevolucion DATE;
+    DECLARE fin_cursor INT DEFAULT FALSE;
+
+    -- Declarar el cursor para seleccionar ProductoId y CantidadDevuelta de la tabla Devoluciones
+    DECLARE cursor_devoluciones CURSOR FOR 
+        SELECT ProductoId, CantidadDevuelta, FechaDevolucion 
+        FROM Devoluciones;
+
+    -- Declarar un handler para detectar el final del cursor
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET fin_cursor = TRUE;
+
+    -- Abrir el cursor
+    OPEN cursor_devoluciones;
+    
+    FETCH cursor_devoluciones INTO v_ProductoId, v_CantidadDevuelta, v_FechaDevolucion;
+
+    -- Procesar cada fila del cursor
+    WHILE NOT fin_cursor DO
+        -- Actualizar la cantidad en la tabla Inventario incrementando con la CantidadDevuelta
+        UPDATE Inventario
+        SET Cantidad = Cantidad + v_CantidadDevuelta
+        WHERE ProductoId = v_ProductoId;
+
+        -- Registrar el procesamiento de la devolución en una tabla HistorialDevoluciones
+        INSERT INTO HistorialDevoluciones (ProductoId, CantidadDevuelta, FechaProcesamiento)
+        VALUES (v_ProductoId, v_CantidadDevuelta, v_FechaDevolucion);
+
+        -- Borrar la devolución procesada
+        DELETE FROM Devoluciones WHERE ProductoId = v_ProductoId;
+    
+		-- Obtener los valores actuales del cursor
+        FETCH cursor_devoluciones INTO v_ProductoId, v_CantidadDevuelta, v_FechaDevolucion;
+	END WHILE;
+    -- Cerrar el cursor
+    CLOSE cursor_devoluciones;
+END //
+
+DELIMITER ;
+
+CALL ProcesarDevoluciones();
+SELECT * FROM Inventario

@@ -1,0 +1,18 @@
+CREATE TABLE Devoluciones (
+    DevolucionId INT PRIMARY KEY AUTO_INCREMENT,
+    ProductoId INT NOT NULL,
+    CantidadDevuelta INT NOT NULL,
+    FechaDevolucion DATE NOT NULL
+);
+CREATE TABLE Inventario (
+    ProductoId INT PRIMARY KEY AUTO_INCREMENT,
+    NombreProducto VARCHAR(100) NOT NULL,
+    Cantidad INT NOT NULL,
+    Precio DECIMAL(10,2) NOT NULL
+);
+CREATE TABLE HistorialDevoluciones (
+    HistorialId INT AUTO_INCREMENT PRIMARY KEY,
+    ProductoId INT NOT NULL,
+    CantidadDevuelta INT NOT NULL,
+    FechaProcesamiento DATE NOT NULL
+);

@@ -1,0 +1,44 @@
+INSERT INTO Inventario (NombreProducto, Cantidad, Precio) VALUES
+('Laptop', 10, 1200.00),
+('Mouse', 50, 25.00),
+('Teclado', 30, 45.00),
+('Monitor', 15, 200.00),
+('Impresora', 5, 150.00),
+('Tablet', 8, 300.00),
+('Cámara', 12, 500.00),
+('Smartphone', 20, 800.00),
+('Auriculares', 25, 75.00),
+('Disco Duro', 40, 100.00),
+('USB', 60, 15.00),
+('Cargador', 35, 20.00),
+('Cable HDMI', 45, 10.00),
+('Router', 18, 60.00),
+('Memoria RAM', 22, 80.00),
+('Silla Gamer', 6, 250.00),
+('Mesa de Oficina', 5, 300.00),
+('Altavoces', 14, 120.00),
+('Proyector', 3, 450.00),
+('Micrófono', 7, 150.00);
+
+
+INSERT INTO Devoluciones (ProductoId, CantidadDevuelta, FechaDevolucion) VALUES
+(1, 1, '2023-10-01'),  -- Devolución de una Laptop
+(2, 3, '2023-10-02'),  -- Devolución de tres Mouse
+(3, 2, '2023-10-03'),  -- Devolución de dos Teclados
+(4, 1, '2023-10-05'),  -- Devolución de un Monitor
+(5, 1, '2023-10-06'),  -- Devolución de una Impresora
+(6, 1, '2023-10-08'),  -- Devolución de una Tablet
+(7, 2, '2023-10-10'),  -- Devolución de dos Cámaras
+(8, 1, '2023-10-11'),  -- Devolución de un Smartphone
+(9, 3, '2023-10-12'),  -- Devolución de tres Auriculares
+(10, 4, '2023-10-13'), -- Devolución de cuatro Discos Duros
+(11, 5, '2023-10-14'), -- Devolución de cinco USBs
+(12, 2, '2023-10-15'), -- Devolución de dos Cargadores
+(13, 1, '2023-10-16'), -- Devolución de un Cable HDMI
+(14, 1, '2023-10-17'), -- Devolución de un Router
+(15, 1, '2023-10-18'), -- Devolución de una Memoria RAM
+(16, 1, '2023-10-19'), -- Devolución de una Silla Gamer
+(17, 1, '2023-10-20'), -- Devolución de una Mesa de Oficina
+(18, 2, '2023-10-21'), -- Devolución de dos Altavoces
+(19, 1, '2023-10-22'), -- Devolución de un Proyector
+(20, 1, '2023-10-23'); -- Devolución de un Micrófono
